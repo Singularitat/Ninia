@@ -8,6 +8,7 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.exceptions.PermissionException;
 import net.dv8tion.jda.api.exceptions.RateLimitedException;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import net.dv8tion.jda.api.EmbedBuilder;
 
 import java.util.List;
 import java.util.Random;
@@ -21,6 +22,8 @@ import java.io.IOException;
 import javax.security.auth.login.LoginException;
 
 import java.time.OffsetDateTime;
+
+import java.awt.Color;
 
 
 public class Bot extends ListenerAdapter {
@@ -78,12 +81,28 @@ public class Bot extends ListenerAdapter {
 
         switch (msg) {
             case "!ping":
-                channel.sendMessage((currentTime - message.getTimeCreated().toInstant().toEpochMilli()) + "ms").queue();
+                EmbedBuilder embed = new EmbedBuilder();
+                embed.setColor(new Color(0x7289da));
+
+                long ping = (currentTime - message.getTimeCreated().toInstant().toEpochMilli());
+
+                if (ping <= 50) {
+                    embed.addField("Command Latency", "Clock out of sync", false);
+                } else {
+                    embed.addField("Command Latency", String.format("`%dms`", ping), false);
+                }
+
+                embed.addField("Discord API Latency", String.format("`%dms`", jda.getGatewayPing()), false);
+
+                channel.sendMessage(embed.build()).queue();
                 break;
             case "!roll":
                 Random rand = ThreadLocalRandom.current();
                 int roll = rand.nextInt(6) + 1;
                 channel.sendMessage("" + roll).queue();
+                break;
+            case "!source":
+                channel.sendMessage("https://github.com/Singularitat/Ninia").queue();
                 break;
         }
     }
