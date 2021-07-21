@@ -19,6 +19,9 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.IOException;
 
+import java.lang.management.ManagementFactory;
+import java.lang.management.RuntimeMXBean;
+
 import javax.security.auth.login.LoginException;
 
 import java.time.OffsetDateTime;
@@ -103,6 +106,10 @@ public class Bot extends ListenerAdapter {
                 break;
             case "!source":
                 channel.sendMessage("https://github.com/Singularitat/Ninia").queue();
+                break;
+            case "!uptime":
+                long upTime = ManagementFactory.getRuntimeMXBean().getUptime();
+                channel.sendMessage(String.format("%ds", upTime / 1000)).queue();
                 break;
         }
     }
