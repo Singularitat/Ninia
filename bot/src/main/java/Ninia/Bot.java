@@ -111,6 +111,21 @@ public class Bot extends ListenerAdapter {
                 long upTime = ManagementFactory.getRuntimeMXBean().getUptime();
                 channel.sendMessage(String.format("%ds", upTime / 1000)).queue();
                 break;
+            case "!slot":
+                String[] emojis = {":apple:", ":tangerine:", ":pear:", ":lemon:", ":watermelon:", ":grapes:", ":strawberry:", ":cherries:", ":kiwi:", ":pineapple:", ":coconut:", ":peach:", ":mango:"};
+                rand = ThreadLocalRandom.current();
+
+                String a = emojis[rand.nextInt(13)];
+                String b = emojis[rand.nextInt(13)];
+                String c = emojis[rand.nextInt(13)];
+                String d = emojis[rand.nextInt(13)];
+
+                embed = new EmbedBuilder();
+                embed.setColor(new Color(0x7289da));
+
+                embed.setTitle(String.format("[ %s %s %s %s ]", a, b, c, d), null);
+                channel.sendMessage(embed.build()).queue();
+                break;
         }
     }
 }
