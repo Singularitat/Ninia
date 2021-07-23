@@ -112,7 +112,21 @@ public class Bot extends ListenerAdapter {
                 channel.sendMessage(String.format("%ds", upTime / 1000)).queue();
                 break;
             case "!slot":
-                String[] emojis = {":apple:", ":tangerine:", ":pear:", ":lemon:", ":watermelon:", ":grapes:", ":strawberry:", ":cherries:", ":kiwi:", ":pineapple:", ":coconut:", ":peach:", ":mango:"};
+                String[] emojis = {
+                    ":apple:",
+                    ":tangerine:",
+                    ":pear:",
+                    ":lemon:",
+                    ":watermelon:",
+                    ":grapes:",
+                    ":strawberry:",
+                    ":cherries:",
+                    ":kiwi:",
+                    ":pineapple:",
+                    ":coconut:",
+                    ":peach:",
+                    ":mango:"
+                };
                 rand = ThreadLocalRandom.current();
 
                 String a = emojis[rand.nextInt(13)];
