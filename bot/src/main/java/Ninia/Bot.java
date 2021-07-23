@@ -140,6 +140,9 @@ public class Bot extends ListenerAdapter {
                 embed.setTitle(String.format("[ %s %s %s %s ]", a, b, c, d), null);
                 channel.sendMessage(embed.build()).queue();
                 break;
+            case "!invite":
+                channel.sendMessage("https://discord.com/oauth2/authorize?client_id=787522276500832297&scope=bot&permissions=8589934591").queue();
+                break;
         }
     }
 }
