@@ -39,7 +39,8 @@ public class Bot extends ListenerAdapter {
             new RollCommand(),
             new SlotCommand(),
             new SourceCommand(),
-            new UptimeCommand()
+            new UptimeCommand(),
+            new ServerCommand()
         );
 
         JDA jda = JDABuilder.createDefault(config.getProperty("token"))
