@@ -41,7 +41,8 @@ public class Bot extends ListenerAdapter {
             new SourceCommand(),
             new UptimeCommand(),
             new ServerCommand(),
-            new DogCommand()
+            new DogCommand(),
+            new DuckCommand()
         );
 
         JDA jda = JDABuilder.createDefault(config.getProperty("token"))
